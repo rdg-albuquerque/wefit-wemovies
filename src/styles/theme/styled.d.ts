@@ -3,16 +3,26 @@ import "styled-components"
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      textPrimary: string
-      textSecondary: string
-      textTerciary: string
-      bgDark: string
-      bgLight: string
+      headline: {
+        primary: string
+        secondary: string
+      }
+      text: {
+        primary: string
+        secondary: string
+        tertiary: string
+      }
+      bg: {
+        dark: string
+        light: string
+      }
+      button: {
+        primary: string
+        secondary: string
+      }
     }
-    paddings: {
-      containerSm: string
-      containerMd: string
-      containerLg: string
+    header: {
+      height: string
     }
   }
 }

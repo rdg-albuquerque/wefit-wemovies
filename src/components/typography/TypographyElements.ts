@@ -1,29 +1,26 @@
-import { Variation } from "@/styles/theme/types/color-variation"
+import { Variation } from "@/types/color-variation-type"
 import styled from "styled-components"
 
-interface TitleProps {
+interface ITitleProps {
   variation?: Exclude<Variation, "tertiary">
 }
 
-interface TextProps {
+interface ITextProps {
   variation?: Variation
   fontWeight?: number
 }
 
-export const Headline = styled.h1<TitleProps>`
+export const Headline = styled.h1<ITitleProps>`
   font-size: 2rem;
   font-weight: 700;
   color: ${(props) =>
-    props.theme.colors.headline[props.variation] ||
-    props.theme.colors.headline.primary};
+    props.theme.colors.headline[props.variation || "primary"]};
 `
 
-const Text = styled.span<TextProps>`
+const Text = styled.span<ITextProps>`
   display: block;
   font-weight: ${(props) => props.fontWeight || 400};
-  color: ${(props) =>
-    props.theme.colors.text[props.variation] ||
-    props.theme.colors.text.primary};
+  color: ${(props) => props.theme.colors.text[props.variation || "primary"]};
 `
 
 export const TextLg = styled(Text)`

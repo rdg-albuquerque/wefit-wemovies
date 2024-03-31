@@ -1,18 +1,18 @@
 import { ComponentProps } from "react"
-import { Variation } from "@/styles/theme/types/color-variation"
+import { Variation } from "@/types/color-variation-type"
 import styled from "styled-components"
 
-interface ButtonProps {
+interface IButtonProps {
   variation?: Exclude<Variation, "tertiary">
   maxWidth?: number
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button<IButtonProps>`
+  cursor: pointer;
   background-color: ${(props) =>
-    props.theme.colors.button[props.variation] ||
-    props.theme.colors.button.primary};
+    props.theme.colors.button[props.variation || "primary"]};
   width: 100%;
-  max-width: ${(props) => props.maxWidth + "px" || "unset"};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth + "px" : "unset")};
   border-radius: 0.4rem;
   color: ${(props) => props.theme.colors.text.primary};
   text-align: center;
