@@ -8,8 +8,15 @@ import {
 import { Button } from "../button/buttonElements"
 import { useRouter } from "next/router"
 
-const NoResults = (): JSX.Element => {
+const NoResults = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
   const router = useRouter()
+  const handleButtonClick = () => {
+    if (isCartPage) {
+      router.push("/")
+      return
+    }
+    router.reload()
+  }
   return (
     <NoResultsContent>
       <Headline variation="secondary">
@@ -27,8 +34,8 @@ const NoResults = (): JSX.Element => {
         width={447}
         height={265.36}
       />
-      <Button maxWidth={173} onClick={() => router.reload()}>
-        Recarregar página
+      <Button maxWidth={173} onClick={handleButtonClick}>
+        {isCartPage ? "Voltar" : "Recarregar página"}
       </Button>
     </NoResultsContent>
   )
