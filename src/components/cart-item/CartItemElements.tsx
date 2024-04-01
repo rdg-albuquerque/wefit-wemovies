@@ -6,18 +6,21 @@ export const CartPageWrapper = styled.div`
   width: 100%;
   background-color: #fff;
   border-radius: 0.4rem;
+  padding: 1.6rem;
+
+  @media ${breakpoints.md} {
+    padding: 2.4rem;
+  }
 `
 
 export const CartItemWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
-  padding: 1.6rem;
   border-radius: 0.4rem;
 
   @media ${breakpoints.md} {
     align-items: center;
-    padding: 2.4rem;
   }
 `
 export const ColumnTitleGridMobile = styled.div`

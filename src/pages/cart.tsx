@@ -46,60 +46,59 @@ export default function Cart(): JSX.Element {
           <NoResults isCartPage />
         </NoResultsWrapper>
       ) : (
-        <div>
-          <CartPageWrapper>
-            <ColumnTitleGridMobile>test</ColumnTitleGridMobile>
-            <CartItemWrapper>
-              <div>
-                {/* <ColumnTitle>PRODUCT</ColumnTitle> */}
-                <ImageMobile
-                  src={product.image}
-                  width={64}
-                  height={82}
-                  alt={product.title}
-                />
-                <ImageDesktop
-                  src={product.image}
-                  width={91}
-                  height={114}
-                  alt={product.title}
-                />
-              </div>
-              <ProductInfoContainer>
-                <ProductInfoContainerLeft>
-                  <TextMd
-                    variation="secondary"
-                    fontWeight={700}
-                    style={{ flexGrow: 1 }}
-                  >
-                    {product.title}
-                  </TextMd>
-                  <ProductPrice fontWeight={700} variation="secondary">
+        <CartPageWrapper>
+          <ColumnTitleGridMobile>
+            <TextMd variation="tertiary">PRODUCT</TextMd>
+            <TextMd variation="tertiary">QTY</TextMd>
+            <TextMd variation="tertiary">SUBTOTAL</TextMd>
+          </ColumnTitleGridMobile>
+          <CartItemWrapper>
+            <ImageMobile
+              src={product.image}
+              width={64}
+              height={82}
+              alt={product.title}
+            />
+            <ImageDesktop
+              src={product.image}
+              width={91}
+              height={114}
+              alt={product.title}
+            />
+            <ProductInfoContainer>
+              <ProductInfoContainerLeft>
+                <TextMd
+                  variation="secondary"
+                  fontWeight={700}
+                  style={{ flexGrow: 1 }}
+                >
+                  {product.title}
+                </TextMd>
+                <ProductPrice fontWeight={700} variation="secondary">
+                  {formatPrice(product.price)}
+                </ProductPrice>
+                <RemoveProductMobileBtn>
+                  <TrashIcon />
+                </RemoveProductMobileBtn>
+              </ProductInfoContainerLeft>
+              <ProductInfoContainerRight>
+                <QtyPicker pid={product.id} />
+                <SubTotal>
+                  <TextSm variation="tertiary">SUBTOTAL</TextSm>
+                  {/* console.log -> reminder to update this logic below */}
+                  <TextLg fontWeight={700} variation="secondary">
                     {formatPrice(product.price)}
-                  </ProductPrice>
-                  <RemoveProductMobileBtn>
-                    <TrashIcon />
-                  </RemoveProductMobileBtn>
-                </ProductInfoContainerLeft>
-                <ProductInfoContainerRight>
-                  <QtyPicker pid={product.id} />
-                  <SubTotal>
-                    <TextSm variation="tertiary">SUBTOTAL</TextSm>
-                    {/* console.log -> reminder to update this logic below */}
-                    <TextLg fontWeight={700} variation="secondary">
-                      {formatPrice(product.price)}
-                    </TextLg>
-                  </SubTotal>
-                </ProductInfoContainerRight>
-                <RemoveProductBtnContainer>
-                  <RemoveProductDesktopBtn>
-                    <TrashIcon />
-                  </RemoveProductDesktopBtn>
-                </RemoveProductBtnContainer>
-              </ProductInfoContainer>
-            </CartItemWrapper>
-          </CartPageWrapper>
-        </div>
+                  </TextLg>
+                </SubTotal>
+              </ProductInfoContainerRight>
+              <RemoveProductBtnContainer>
+                <RemoveProductDesktopBtn>
+                  <TrashIcon />
+                </RemoveProductDesktopBtn>
+              </RemoveProductBtnContainer>
+            </ProductInfoContainer>
+          </CartItemWrapper>
+        </CartPageWrapper>
       )}
     </PageWrapper>
   )
