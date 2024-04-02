@@ -4,6 +4,7 @@ import {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useEffect,
   useState,
 } from "react"
 
@@ -15,8 +16,23 @@ interface IGlobalContext {
 export const GlobalContext = createContext<IGlobalContext>({} as IGlobalContext)
 
 export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
-  const [cartItems, setCartItems] = useState<ICartItems>({})
+  const [cartItems, cartItemsDispatch] = useState<ICartItems>({})
 
+  const setCartItems = (
+    value: ICartItems | ((prevState: ICartItems) => ICartItems)
+  ) => {
+    cartItemsDispatch(value)
+    localStorage.setItem("cartItems", JSON.stringify(value))
+  }
+
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem("cartItems")
+
+    if (storedCartItems) {
+      const parsed = JSON.parse(storedCartItems)
+      setCartItems({ ...parsed })
+    }
+  }, [])
   return (
     <GlobalContext.Provider
       value={{
