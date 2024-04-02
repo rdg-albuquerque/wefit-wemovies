@@ -28,7 +28,11 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems")
 
-    if (storedCartItems) {
+    if (
+      storedCartItems &&
+      storedCartItems !== "undefined" &&
+      storedCartItems !== "null"
+    ) {
       const parsed = JSON.parse(storedCartItems)
       setCartItems({ ...parsed })
     }

@@ -14,15 +14,12 @@ const ProductCard = ({ product }: { product: IProduct }): JSX.Element => {
   const isInCart = Boolean(cartItems[product.id]?.id)
 
   const handleAddToCart = () => {
+    const updatedItems = { ...cartItems }
     if (isInCart) {
-      const updatedItems = { ...cartItems }
       updatedItems[product.id].qty++
       setCartItems({ ...updatedItems })
     } else {
-      setCartItems((prevState) => ({
-        ...prevState,
-        [product.id]: { ...product, qty: 1 },
-      }))
+      setCartItems({ ...updatedItems, [product.id]: { ...product, qty: 1 } })
     }
   }
 
