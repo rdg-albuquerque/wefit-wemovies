@@ -1,14 +1,10 @@
 import Image from "next/image"
 import { Headline } from "../typography/TypographyElements"
-import {
-  ImageDesktop,
-  ImageMobile,
-  NoResultsContent,
-} from "./NoResultsElements"
+import { ImageDesktop, ImageMobile, NoContentInner } from "./NoContentElements"
 import { Button } from "../button/buttonElements"
 import { useRouter } from "next/router"
 
-const NoResults = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
+const NoContent = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
   const router = useRouter()
   const handleButtonClick = () => {
     if (isCartPage) {
@@ -18,7 +14,7 @@ const NoResults = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
     router.reload()
   }
   return (
-    <NoResultsContent>
+    <NoContentInner>
       <Headline variation="secondary">
         {"Parece que não há nada por aqui :("}
       </Headline>
@@ -37,8 +33,8 @@ const NoResults = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
       <Button maxWidth={173} onClick={handleButtonClick}>
         {isCartPage ? "Voltar" : "Recarregar página"}
       </Button>
-    </NoResultsContent>
+    </NoContentInner>
   )
 }
 
-export default NoResults
+export default NoContent

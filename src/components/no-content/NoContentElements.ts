@@ -3,7 +3,7 @@ import { Headline } from "../typography/TypographyElements"
 import breakpoints from "@/styles/breakpoints"
 import Image from "next/image"
 
-export const NoResultsWrapper = styled.div`
+export const NoContentWrapper = styled.div`
   height: calc(100vh - ${(props) => props.theme.header.height});
   width: 100%;
   padding-bottom: 6.364rem;
@@ -13,19 +13,29 @@ export const NoResultsWrapper = styled.div`
   }
 `
 
-export const NoResultsContent = styled.div`
+export const NoContentInner = styled.div`
   height: 100%;
   background-color: ${(props) => props.theme.colors.bg.light};
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6.4rem;
+  padding: 6.4rem 0;
   gap: 2.4rem;
   border-radius: 0.4rem;
   min-height: 50rem;
 
   ${Headline} {
     text-align: center;
+    max-width: 200px;
+
+    @media ${breakpoints.md} {
+      max-width: unset;
+    }
+  }
+
+  &.order-confirmation img {
+    width: 23.8rem;
+    height: 24.8rem;
   }
 `
 
