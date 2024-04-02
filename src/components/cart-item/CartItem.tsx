@@ -11,7 +11,7 @@ import {
   SubTotal,
 } from "./CartItemElements"
 import { formatPrice } from "@/utils/format-price"
-import { ImageMobile, ImageDesktop } from "../no-results/NoResultsElements"
+import { ImageMobile, ImageDesktop } from "../no-content/NoContentElements"
 import { TextMd, TextSm, TextLg } from "../typography/TypographyElements"
 import QtyPicker from "./QtyPicker"
 import Image from "next/image"
