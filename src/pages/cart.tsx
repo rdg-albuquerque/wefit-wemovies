@@ -1,7 +1,10 @@
+import { Button } from "@/components/button/buttonElements"
 import {
   CartItemWrapper,
   CartPageWrapper,
-  ColumnTitleGridMobile,
+  ColumnTitleGridContainer,
+  ColumnTitleInnerGrid,
+  OrderConfirmationWrapper,
   ProductInfoContainer,
   ProductInfoContainerLeft,
   ProductInfoContainerRight,
@@ -10,6 +13,7 @@ import {
   RemoveProductDesktopBtn,
   RemoveProductMobileBtn,
   SubTotal,
+  TotalContainer,
 } from "@/components/cart-item/CartItemElements"
 import QtyPicker from "@/components/cart-item/QtyPicker"
 import NoResults from "@/components/no-results/NoResults"
@@ -47,11 +51,33 @@ export default function Cart(): JSX.Element {
         </NoResultsWrapper>
       ) : (
         <CartPageWrapper>
-          <ColumnTitleGridMobile>
-            <TextMd variation="tertiary">PRODUCT</TextMd>
-            <TextMd variation="tertiary">QTY</TextMd>
-            <TextMd variation="tertiary">SUBTOTAL</TextMd>
-          </ColumnTitleGridMobile>
+          <ColumnTitleGridContainer>
+            <TextMd
+              style={{ width: "91px" }}
+              variation="tertiary"
+              fontWeight={700}
+            >
+              PRODUCT
+            </TextMd>
+            <ColumnTitleInnerGrid>
+              <div></div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingRight: "16rem",
+                }}
+              >
+                <TextMd variation="tertiary" fontWeight={700}>
+                  QTD
+                </TextMd>
+                <TextMd variation="tertiary" fontWeight={700}>
+                  SUBTOTAL
+                </TextMd>
+              </div>
+              <div></div>
+            </ColumnTitleInnerGrid>
+          </ColumnTitleGridContainer>
           <CartItemWrapper>
             <ImageMobile
               src={product.image}
@@ -84,9 +110,15 @@ export default function Cart(): JSX.Element {
               <ProductInfoContainerRight>
                 <QtyPicker pid={product.id} />
                 <SubTotal>
-                  <TextSm variation="tertiary">SUBTOTAL</TextSm>
+                  <TextSm className="md-none" variation="tertiary">
+                    SUBTOTAL
+                  </TextSm>
                   {/* console.log -> reminder to update this logic below */}
-                  <TextLg fontWeight={700} variation="secondary">
+                  <TextLg
+                    className="sub-total-value"
+                    fontWeight={700}
+                    variation="secondary"
+                  >
                     {formatPrice(product.price)}
                   </TextLg>
                 </SubTotal>
@@ -98,6 +130,24 @@ export default function Cart(): JSX.Element {
               </RemoveProductBtnContainer>
             </ProductInfoContainer>
           </CartItemWrapper>
+          <OrderConfirmationWrapper>
+            <TotalContainer>
+              <TextMd variation="tertiary" fontWeight={700}>
+                TOTAL
+              </TextMd>
+              <TextLg
+                className="total-price"
+                variation="secondary"
+                fontWeight={700}
+              >
+                {/* REMOVE MOCKED */}
+                {formatPrice("29.99")}
+              </TextLg>
+            </TotalContainer>
+            <Button className="place-order-btn">
+              <TextMd fontWeight={700}>FINALIZAR PEDIDO</TextMd>
+            </Button>
+          </OrderConfirmationWrapper>
         </CartPageWrapper>
       )}
     </PageWrapper>

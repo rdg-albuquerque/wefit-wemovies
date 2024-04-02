@@ -1,6 +1,6 @@
 import breakpoints from "@/styles/breakpoints"
 import styled from "styled-components"
-import { TextLg, TextMd, TextSm } from "../typography/TypographyElements"
+import { TextLg } from "../typography/TypographyElements"
 
 export const CartPageWrapper = styled.div`
   width: 100%;
@@ -18,30 +18,41 @@ export const CartItemWrapper = styled.div`
   align-items: flex-start;
   width: 100%;
   border-radius: 0.4rem;
+  padding-bottom: 2.1rem;
 
   @media ${breakpoints.md} {
     align-items: center;
+    padding-bottom: 2.4rem;
   }
 `
-export const ColumnTitleGridMobile = styled.div`
+export const ColumnTitleGridContainer = styled.div`
   display: none;
+  width: 100%;
+  margin-bottom: 2.4rem;
 
   @media ${breakpoints.md} {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    display: flex;
   }
+`
+export const ColumnTitleInnerGrid = styled.div`
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 4fr 1fr;
+  margin-left: 1.6rem;
 `
 
 export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
   gap: 1.6rem;
   margin-left: 1.6rem;
 
   @media ${breakpoints.md} {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1.2fr 4fr 1fr;
+    gap: 0;
   }
 `
 
@@ -60,6 +71,11 @@ export const ProductInfoContainerRight = styled.div`
   display: flex;
   justify-content: space-between;
   padding-right: 1.5rem;
+
+  @media ${breakpoints.md} {
+    padding-right: 16rem;
+    align-items: center;
+  }
 `
 
 export const QtyPickerWrapper = styled.div`
@@ -73,7 +89,7 @@ export const QtyInput = styled.input`
   width: 5.9rem;
   height: 2.6rem;
   text-align: center;
-  border: 1px solid #d9d9d9;
+  border: 0.1rem solid #d9d9d9;
   font-size: 1.4rem;
   border-radius: 0.4rem;
 
@@ -82,13 +98,28 @@ export const QtyInput = styled.input`
     -webkit-appearance: none;
   }
 `
+
+export const MinusPlusBtn = styled.button`
+  cursor: pointer;
+  height: 1.8rem;
+`
 export const SubTotal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${breakpoints.md} {
+    .md-none {
+      display: none;
+    }
+    .sub-total-value {
+      width: 7.26rem;
+    }
+  }
 `
 
 export const RemoveProductBtnContainer = styled.div`
+  display: none;
   @media ${breakpoints.md} {
     display: flex;
     justify-content: flex-end;
@@ -118,5 +149,35 @@ export const ProductPrice = styled(TextLg)`
 
   @media ${breakpoints.md} {
     margin: 0;
+  }
+`
+
+export const OrderConfirmationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-top: 0.1rem solid ${(props) => props.theme.colors.text.tertiary};
+  padding-top: 2.1rem;
+  row-gap: 1.6rem;
+
+  @media ${breakpoints.md} {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    .place-order-btn {
+      max-width: 17.3rem;
+    }
+  }
+`
+export const TotalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .total-price {
+    font-size: 2.4rem;
+  }
+
+  @media ${breakpoints.md} {
+    gap: 2rem;
+    padding-right: 1.5rem;
   }
 `

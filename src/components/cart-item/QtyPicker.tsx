@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Button } from "../button/buttonElements"
-import { QtyInput, QtyPickerWrapper } from "./CartItemElements"
+import { MinusPlusBtn, QtyInput, QtyPickerWrapper } from "./CartItemElements"
 import { useGlobal } from "@/hooks/global-hook"
 import { useState } from "react"
 
@@ -19,16 +19,16 @@ const QtyPicker = ({ pid }: { pid: number }): JSX.Element => {
 
   return (
     <QtyPickerWrapper>
-      <button style={{ height: "18px" }}>
+      <MinusPlusBtn>
         <Image
           alt="Decrease button"
           src="/minus-icon.svg"
           width={18}
           height={18}
         />
-      </button>
+      </MinusPlusBtn>
       <QtyInput readOnly value={cartItems[pid]?.qty || 1} type="number" />
-      <button style={{ height: "18px" }}>
+      <MinusPlusBtn>
         <Image
           onClick={handleAddClick}
           alt="Add button"
@@ -36,7 +36,7 @@ const QtyPicker = ({ pid }: { pid: number }): JSX.Element => {
           width={18}
           height={18}
         />
-      </button>
+      </MinusPlusBtn>
     </QtyPickerWrapper>
   )
 }
