@@ -1,6 +1,8 @@
 # WeMovies
 
-Hi WeFit team! I hope you like the work I did for this app!
+Hi WeFit Team 👋
+
+I hope you like the work I did for this app!
 
 ## Getting Started
 
