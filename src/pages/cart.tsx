@@ -1,36 +1,18 @@
 import { Button } from "@/components/button/buttonElements"
+import CartItem from "@/components/cart-item/CartItem"
 import {
-  CartItemWrapper,
   CartPageWrapper,
   ColumnTitleGridContainer,
   ColumnTitleInnerGrid,
   OrderConfirmationWrapper,
-  ProductInfoContainer,
-  ProductInfoContainerLeft,
-  ProductInfoContainerRight,
-  ProductPrice,
-  RemoveProductBtnContainer,
-  RemoveProductDesktopBtn,
-  RemoveProductMobileBtn,
-  SubTotal,
   TotalContainer,
 } from "@/components/cart-item/CartItemElements"
-import QtyPicker from "@/components/cart-item/QtyPicker"
 import NoResults from "@/components/no-results/NoResults"
-import {
-  ImageDesktop,
-  ImageMobile,
-  NoResultsWrapper,
-} from "@/components/no-results/NoResultsElements"
+import { NoResultsWrapper } from "@/components/no-results/NoResultsElements"
 import { PageWrapper } from "@/components/page-content-wrapper/PageWrapperElements"
-import {
-  TextLg,
-  TextMd,
-  TextSm,
-} from "@/components/typography/TypographyElements"
+import { TextLg, TextMd } from "@/components/typography/TypographyElements"
 import { useGlobal } from "@/hooks/global-hook"
 import { formatPrice } from "@/utils/format-price"
-import Image from "next/image"
 
 export default function Cart(): JSX.Element {
   const { cartItems } = useGlobal()
@@ -79,59 +61,7 @@ export default function Cart(): JSX.Element {
           </ColumnTitleGridContainer>
           {Object.keys(cartItems)?.map((key) => {
             const product = cartItems[key]
-            return (
-              <CartItemWrapper key={key}>
-                <ImageMobile
-                  src={product.image}
-                  width={64}
-                  height={82}
-                  alt={product.title}
-                />
-                <ImageDesktop
-                  src={product.image}
-                  width={91}
-                  height={114}
-                  alt={product.title}
-                />
-                <ProductInfoContainer>
-                  <ProductInfoContainerLeft>
-                    <TextMd
-                      variation="secondary"
-                      fontWeight={700}
-                      style={{ flexGrow: 1 }}
-                    >
-                      {product.title}
-                    </TextMd>
-                    <ProductPrice fontWeight={700} variation="secondary">
-                      {formatPrice(product.price)}
-                    </ProductPrice>
-                    <RemoveProductMobileBtn>
-                      <TrashIcon />
-                    </RemoveProductMobileBtn>
-                  </ProductInfoContainerLeft>
-                  <ProductInfoContainerRight>
-                    <QtyPicker pid={product.id} />
-                    <SubTotal>
-                      <TextSm className="md-none" variation="tertiary">
-                        SUBTOTAL
-                      </TextSm>
-                      <TextLg
-                        className="sub-total-value"
-                        fontWeight={700}
-                        variation="secondary"
-                      >
-                        {formatPrice(product.price, product.qty)}
-                      </TextLg>
-                    </SubTotal>
-                  </ProductInfoContainerRight>
-                  <RemoveProductBtnContainer>
-                    <RemoveProductDesktopBtn>
-                      <TrashIcon />
-                    </RemoveProductDesktopBtn>
-                  </RemoveProductBtnContainer>
-                </ProductInfoContainer>
-              </CartItemWrapper>
-            )
+            return <CartItem key={key} product={product} />
           })}
           <OrderConfirmationWrapper>
             <TotalContainer>
@@ -153,11 +83,5 @@ export default function Cart(): JSX.Element {
         </CartPageWrapper>
       )}
     </PageWrapper>
-  )
-}
-
-const TrashIcon = () => {
-  return (
-    <Image src="/trash-icon.svg" width={16} height={18} alt="Remove product" />
   )
 }
