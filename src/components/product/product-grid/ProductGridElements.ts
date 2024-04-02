@@ -8,8 +8,11 @@ export const ProductGrid = styled.div`
   gap: 1.6rem;
   grid-template-columns: 1fr;
 
+  margin-top: 1.6rem;
+
   @media ${breakpoints.md} {
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 2.4rem;
+    margin-top: 2.4rem;
   }
 `

@@ -2,7 +2,7 @@ import { ImageSpinner, LoadingContainer } from "./LoadingElements"
 
 const Loading = (): JSX.Element => {
   return (
-    <LoadingContainer>
+    <LoadingContainer className="loading-container">
       <ImageSpinner
         alt="Loading State"
         src="/load-spinner.png"
