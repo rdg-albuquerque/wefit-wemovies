@@ -7,7 +7,17 @@ export const SearchWrapper = styled.div`
   width: 100%;
   max-width: 33.86rem;
 
+  @media (min-width: 656px) {
+    width: 90%;
+    max-width: unset;
+  }
+
+  @media (min-width: 750px) {
+    width: 80%;
+  }
+
   @media ${breakpoints.md} {
+    width: 100%;
     max-width: unset;
   }
 

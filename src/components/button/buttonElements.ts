@@ -1,4 +1,3 @@
-import { ComponentProps } from "react"
 import { Variation } from "@/types/color-variation-type"
 import styled from "styled-components"
 
