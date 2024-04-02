@@ -11,12 +11,15 @@ import {
 interface IGlobalContext {
   cartItems: ICartItems
   setCartItems: Dispatch<SetStateAction<ICartItems>>
+  orderConfirmed: boolean
+  setOrderConfirmed: Dispatch<SetStateAction<boolean>>
 }
 
 export const GlobalContext = createContext<IGlobalContext>({} as IGlobalContext)
 
 export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [cartItems, cartItemsDispatch] = useState<ICartItems>({})
+  const [orderConfirmed, setOrderConfirmed] = useState(false)
 
   const setCartItems = (
     value: ICartItems | ((prevState: ICartItems) => ICartItems)
@@ -42,6 +45,8 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
       value={{
         cartItems,
         setCartItems,
+        orderConfirmed,
+        setOrderConfirmed,
       }}
     >
       {children}

@@ -17,7 +17,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 
 export default function Cart(): JSX.Element {
-  const { cartItems, setCartItems } = useGlobal()
+  const { cartItems, setCartItems, setOrderConfirmed } = useGlobal()
   const cartItemsValues = Object.values(cartItems)
   const isEmptyCart = Boolean(!cartItemsValues?.length)
   const router = useRouter()
@@ -29,6 +29,7 @@ export default function Cart(): JSX.Element {
 
   const handlePlaceOrder = () => {
     setCartItems({})
+    setOrderConfirmed(true)
     router.push("/order-confirmation")
   }
 
