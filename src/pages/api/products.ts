@@ -12,7 +12,7 @@ function cleanString(str: string) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   try {
     const dataJson = JSON.stringify(data)
@@ -31,8 +31,10 @@ export default async function handler(
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message)
+      res.status(500).json({ error: error.message })
       return
     }
     console.error(error)
+    return res.status(500).json({ error })
   }
 }
