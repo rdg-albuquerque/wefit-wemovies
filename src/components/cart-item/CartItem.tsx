@@ -56,7 +56,7 @@ const CartItem = ({ product }: ICartItemProps): JSX.Element => {
           <ProductPrice fontWeight={700} variation="secondary">
             {formatPrice(product.price)}
           </ProductPrice>
-          <RemoveProductMobileBtn>
+          <RemoveProductMobileBtn onClick={handleRemoveItem}>
             <TrashIcon />
           </RemoveProductMobileBtn>
         </ProductInfoContainerLeft>
