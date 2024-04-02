@@ -46,7 +46,7 @@ export default function Cart(): JSX.Element {
         <CartPageWrapper>
           <ColumnTitleGridContainer>
             <TextMd
-              style={{ width: "91px" }}
+              style={{ width: "9.1rem" }}
               variation="tertiary"
               fontWeight={700}
             >

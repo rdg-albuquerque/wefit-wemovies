@@ -164,6 +164,9 @@ export const OrderConfirmationWrapper = styled.div`
     justify-content: space-between;
     .place-order-btn {
       max-width: 17.3rem;
+      span {
+        font-size: 1.2rem;
+      }
     }
   }
 `

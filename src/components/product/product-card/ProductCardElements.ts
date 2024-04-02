@@ -8,9 +8,13 @@ export const ProductCardWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.bg.light};
   padding: 1.6rem;
   gap: 0.8rem;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   width: 100%;
   max-width: 33.86rem;
+
+  .card__product-title {
+    color: #333333;
+  }
 `
 
 export const AddToCardBtn = styled(Button)`

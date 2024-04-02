@@ -26,7 +26,9 @@ const ProductCard = ({ product }: { product: IProduct }): JSX.Element => {
   return (
     <ProductCardWrapper>
       <Image alt={product.title} src={product.image} width={147} height={188} />
-      <TextSm variation="secondary">{product.title}</TextSm>
+      <TextSm className="card__product-title" variation="secondary">
+        {product.title}
+      </TextSm>
       <TextLg variation="secondary" fontWeight={700}>
         {formatPrice(product.price)}
       </TextLg>

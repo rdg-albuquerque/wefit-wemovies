@@ -26,7 +26,7 @@ export const NoContentInner = styled.div`
 
   ${Headline} {
     text-align: center;
-    max-width: 200px;
+    max-width: 20rem;
 
     @media ${breakpoints.md} {
       max-width: unset;

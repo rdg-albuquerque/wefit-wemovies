@@ -14,8 +14,8 @@ export const SearchWrapper = styled.div`
   button {
     position: absolute;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     top: 50%;
     transform: translateY(-50%);
     right: 1.6rem;
@@ -34,7 +34,7 @@ export const SearchElement = styled.input`
   background-color: ${(props) => props.theme.colors.bg.light};
   font-size: 1.6rem;
   font-weight: 400;
-  border: 2px solid transparent;
+  border: 0.2rem solid transparent;
 
   &:focus:valid {
     border-color: #009edd;

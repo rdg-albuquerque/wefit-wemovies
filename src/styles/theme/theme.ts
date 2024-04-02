@@ -8,7 +8,7 @@ const theme: DefaultTheme = {
     },
     text: {
       primary: "#FFFFFF",
-      secondary: "#00000",
+      secondary: "#2F2E41",
       tertiary: "#999999",
     },
     bg: {
