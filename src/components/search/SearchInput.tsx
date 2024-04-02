@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { SyntheticEvent, useState } from "react"
+import { useState } from "react"
 import { SearchElement, SearchWrapper } from "./SearchInputElements"
 
 export const SearchInput = (): JSX.Element => {
