@@ -6,8 +6,8 @@ interface Data {
   products: IProduct[]
 }
 
-function removeAccent(str: string) {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+function cleanString(str: string) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f\s.,_-]+/g, "")
 }
 
 export default async function handler(
@@ -19,11 +19,11 @@ export default async function handler(
     let { products }: Data = JSON.parse(dataJson)
 
     if (req.query.query) {
-      const queryLower = removeAccent(
+      const queryLower = cleanString(
         (req?.query?.query as string).toLowerCase()
       )
       products = products.filter((product) => {
-        const productTitleLower = removeAccent(product.title.toLowerCase())
+        const productTitleLower = cleanString(product.title.toLowerCase())
         return productTitleLower.includes(queryLower)
       })
     }
