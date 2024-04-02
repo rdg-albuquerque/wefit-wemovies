@@ -7,19 +7,25 @@ import { useState } from "react"
 const QtyPicker = ({ pid }: { pid: number }): JSX.Element => {
   const { cartItems, setCartItems } = useGlobal()
 
-  const [inputValue, setInputValue] = useState<number>()
-
   const handleAddClick = () => {
     const updatedItems = { ...cartItems }
     updatedItems[pid].qty++
     setCartItems({ ...updatedItems })
   }
 
-  const handleRemoveClick = () => {}
+  const handleMinusClick = () => {
+    const updatedItems = { ...cartItems }
+    if (cartItems[pid].qty > 1) {
+      updatedItems[pid].qty--
+    } else {
+      delete updatedItems[pid]
+    }
+    setCartItems({ ...updatedItems })
+  }
 
   return (
     <QtyPickerWrapper>
-      <MinusPlusBtn>
+      <MinusPlusBtn onClick={handleMinusClick}>
         <Image
           alt="Decrease button"
           src="/minus-icon.svg"
@@ -28,14 +34,8 @@ const QtyPicker = ({ pid }: { pid: number }): JSX.Element => {
         />
       </MinusPlusBtn>
       <QtyInput readOnly value={cartItems[pid]?.qty || 1} type="number" />
-      <MinusPlusBtn>
-        <Image
-          onClick={handleAddClick}
-          alt="Add button"
-          src="/plus-icon.svg"
-          width={18}
-          height={18}
-        />
+      <MinusPlusBtn onClick={handleAddClick}>
+        <Image alt="Add button" src="/plus-icon.svg" width={18} height={18} />
       </MinusPlusBtn>
     </QtyPickerWrapper>
   )
