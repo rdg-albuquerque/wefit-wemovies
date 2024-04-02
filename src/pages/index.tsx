@@ -11,10 +11,6 @@ import Head from "next/head"
 export default function Home() {
   const { data, error, isLoading } = useProducts()
 
-  if (error) {
-    console.error(error.message)
-  }
-
   return (
     <>
       <Head>
