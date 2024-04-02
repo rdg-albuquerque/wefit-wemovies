@@ -21,7 +21,7 @@ const ProductCard = ({ product }: { product: IProduct }): JSX.Element => {
     } else {
       setCartItems((prevState) => ({
         ...prevState,
-        [product.id]: { id: product.id, qty: 1 },
+        [product.id]: { ...product, qty: 1 },
       }))
     }
   }

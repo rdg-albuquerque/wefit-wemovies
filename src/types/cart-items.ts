@@ -1,6 +1,5 @@
+import { IProduct } from "./product-type"
+
 export interface ICartItems {
-  [id: string]: {
-    id: string
-    qty: number
-  }
+  [id: string]: IProduct & { qty: number }
 }

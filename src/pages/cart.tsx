@@ -29,19 +29,18 @@ import {
   TextSm,
 } from "@/components/typography/TypographyElements"
 import { useGlobal } from "@/hooks/global-hook"
-import useProducts from "@/hooks/products-hook"
 import { formatPrice } from "@/utils/format-price"
 import Image from "next/image"
 
 export default function Cart(): JSX.Element {
   const { cartItems } = useGlobal()
-  //   const isEmptyCart = Boolean(!Object.keys(cartItems)?.length)
-  const isEmptyCart = false
-  const { data } = useProducts()
+  const cartItemsValues = Object.values(cartItems)
+  const isEmptyCart = Boolean(!cartItemsValues?.length)
 
-  const product = data?.products?.[2]
-
-  if (!product) return <></>
+  const orderTotal = cartItemsValues?.reduce(
+    (total, item) => total + Number(item.price) * item.qty,
+    0
+  )
 
   return (
     <PageWrapper>
@@ -78,58 +77,62 @@ export default function Cart(): JSX.Element {
               <div></div>
             </ColumnTitleInnerGrid>
           </ColumnTitleGridContainer>
-          <CartItemWrapper>
-            <ImageMobile
-              src={product.image}
-              width={64}
-              height={82}
-              alt={product.title}
-            />
-            <ImageDesktop
-              src={product.image}
-              width={91}
-              height={114}
-              alt={product.title}
-            />
-            <ProductInfoContainer>
-              <ProductInfoContainerLeft>
-                <TextMd
-                  variation="secondary"
-                  fontWeight={700}
-                  style={{ flexGrow: 1 }}
-                >
-                  {product.title}
-                </TextMd>
-                <ProductPrice fontWeight={700} variation="secondary">
-                  {formatPrice(product.price)}
-                </ProductPrice>
-                <RemoveProductMobileBtn>
-                  <TrashIcon />
-                </RemoveProductMobileBtn>
-              </ProductInfoContainerLeft>
-              <ProductInfoContainerRight>
-                <QtyPicker pid={product.id} />
-                <SubTotal>
-                  <TextSm className="md-none" variation="tertiary">
-                    SUBTOTAL
-                  </TextSm>
-                  {/* console.log -> reminder to update this logic below */}
-                  <TextLg
-                    className="sub-total-value"
-                    fontWeight={700}
-                    variation="secondary"
-                  >
-                    {formatPrice(product.price)}
-                  </TextLg>
-                </SubTotal>
-              </ProductInfoContainerRight>
-              <RemoveProductBtnContainer>
-                <RemoveProductDesktopBtn>
-                  <TrashIcon />
-                </RemoveProductDesktopBtn>
-              </RemoveProductBtnContainer>
-            </ProductInfoContainer>
-          </CartItemWrapper>
+          {Object.keys(cartItems)?.map((key) => {
+            const product = cartItems[key]
+            return (
+              <CartItemWrapper key={key}>
+                <ImageMobile
+                  src={product.image}
+                  width={64}
+                  height={82}
+                  alt={product.title}
+                />
+                <ImageDesktop
+                  src={product.image}
+                  width={91}
+                  height={114}
+                  alt={product.title}
+                />
+                <ProductInfoContainer>
+                  <ProductInfoContainerLeft>
+                    <TextMd
+                      variation="secondary"
+                      fontWeight={700}
+                      style={{ flexGrow: 1 }}
+                    >
+                      {product.title}
+                    </TextMd>
+                    <ProductPrice fontWeight={700} variation="secondary">
+                      {formatPrice(product.price)}
+                    </ProductPrice>
+                    <RemoveProductMobileBtn>
+                      <TrashIcon />
+                    </RemoveProductMobileBtn>
+                  </ProductInfoContainerLeft>
+                  <ProductInfoContainerRight>
+                    <QtyPicker pid={product.id} />
+                    <SubTotal>
+                      <TextSm className="md-none" variation="tertiary">
+                        SUBTOTAL
+                      </TextSm>
+                      <TextLg
+                        className="sub-total-value"
+                        fontWeight={700}
+                        variation="secondary"
+                      >
+                        {formatPrice(product.price, product.qty)}
+                      </TextLg>
+                    </SubTotal>
+                  </ProductInfoContainerRight>
+                  <RemoveProductBtnContainer>
+                    <RemoveProductDesktopBtn>
+                      <TrashIcon />
+                    </RemoveProductDesktopBtn>
+                  </RemoveProductBtnContainer>
+                </ProductInfoContainer>
+              </CartItemWrapper>
+            )
+          })}
           <OrderConfirmationWrapper>
             <TotalContainer>
               <TextMd variation="tertiary" fontWeight={700}>
@@ -140,8 +143,7 @@ export default function Cart(): JSX.Element {
                 variation="secondary"
                 fontWeight={700}
               >
-                {/* REMOVE MOCKED */}
-                {formatPrice("29.99")}
+                {formatPrice(orderTotal)}
               </TextLg>
             </TotalContainer>
             <Button className="place-order-btn">
