@@ -7,12 +7,14 @@ export const SearchInput = (): JSX.Element => {
   const router = useRouter()
   const [value, setInputValue] = useState(router?.query?.query || "")
 
-  const handleSearch = (e: SyntheticEvent) => {
+  const handleSearch = () => {
     if (value.length) {
       const params = new URLSearchParams()
       params.append("query", value as string)
 
       router.push(`/search?${params.toString()}`)
+    } else {
+      router.pathname !== "/" ? router.push("/") : null
     }
   }
   return (
