@@ -14,16 +14,23 @@ import { TextLg, TextMd } from "@/components/typography/TypographyElements"
 import { useGlobal } from "@/hooks/global-hook"
 import { formatPrice } from "@/utils/format-price"
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 export default function Cart(): JSX.Element {
-  const { cartItems } = useGlobal()
+  const { cartItems, setCartItems } = useGlobal()
   const cartItemsValues = Object.values(cartItems)
   const isEmptyCart = Boolean(!cartItemsValues?.length)
+  const router = useRouter()
 
   const orderTotal = cartItemsValues?.reduce(
     (total, item) => total + Number(item.price) * item.qty,
     0
   )
+
+  const handlePlaceOrder = () => {
+    setCartItems({})
+    router.push("/order-confirmation")
+  }
 
   return (
     <PageWrapper>
@@ -80,7 +87,7 @@ export default function Cart(): JSX.Element {
                 {formatPrice(orderTotal)}
               </TextLg>
             </TotalContainer>
-            <Button className="place-order-btn">
+            <Button className="place-order-btn" onClick={handlePlaceOrder}>
               <TextMd fontWeight={700}>FINALIZAR PEDIDO</TextMd>
             </Button>
           </OrderConfirmationWrapper>
