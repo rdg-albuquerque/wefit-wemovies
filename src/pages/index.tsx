@@ -4,6 +4,7 @@ import { NoResultsWrapper } from "@/components/no-results/NoResultsElements"
 import { PageWrapper } from "@/components/page-content-wrapper/PageWrapperElements"
 import ProductCard from "@/components/product/product-card/ProductCard"
 import { ProductGrid } from "@/components/product/product-grid/ProductGridElements"
+import { SearchInput } from "@/components/search/SearchInput"
 import useProducts from "@/hooks/products-hook"
 import Head from "next/head"
 
@@ -26,11 +27,14 @@ export default function Home() {
             <NoResults />
           </NoResultsWrapper>
         ) : (
-          <ProductGrid>
-            {data?.products?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ProductGrid>
+          <>
+            {!isLoading && <SearchInput />}
+            <ProductGrid>
+              {data?.products?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </ProductGrid>
+          </>
         )}
       </PageWrapper>
     </>
