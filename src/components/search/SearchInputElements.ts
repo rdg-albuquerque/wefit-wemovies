@@ -31,7 +31,7 @@ export const SearchElement = styled.input`
   padding: 1.6rem;
   padding-right: 5.6rem;
   border-radius: 0.4rem;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.bg.light};
   font-size: 1.6rem;
   font-weight: 400;
   border: 2px solid transparent;

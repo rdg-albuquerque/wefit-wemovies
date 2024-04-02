@@ -4,7 +4,7 @@ import { TextLg } from "../typography/TypographyElements"
 
 export const CartPageWrapper = styled.div`
   width: 100%;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.bg.light};
   border-radius: 0.4rem;
   padding: 1.6rem;
 
