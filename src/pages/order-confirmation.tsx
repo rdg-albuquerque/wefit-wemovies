@@ -38,7 +38,7 @@ export default function OrderConfirmation() {
             height={307}
           />
           <Button maxWidth={173} onClick={() => router.push("/")}>
-            Voltar
+            VOLTAR
           </Button>
         </NoContentInner>
       </NoContentWrapper>

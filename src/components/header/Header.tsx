@@ -21,7 +21,11 @@ const Header = (): JSX.Element => {
         <Link href="/cart">
           <CartContainer>
             <MyCartContainer>
-              <TextMd className="header__my-cart-text" variation="primary">
+              <TextMd
+                fontWeight={600}
+                className="header__my-cart-text"
+                variation="primary"
+              >
                 Meu carrinho
               </TextMd>
               <TextSm variation="tertiary" fontWeight={600}>

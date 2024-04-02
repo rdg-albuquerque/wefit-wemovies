@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Headline } from "../typography/TypographyElements"
 import { ImageDesktop, ImageMobile, NoContentInner } from "./NoContentElements"
 import { Button } from "../button/buttonElements"
