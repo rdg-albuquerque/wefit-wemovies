@@ -3,9 +3,9 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { SearchElement, SearchWrapper } from "./SearchInputElements"
 
-export const SearchInput = (): JSX.Element => {
+export const SearchInput = ({ query }: { query?: string }): JSX.Element => {
   const router = useRouter()
-  const [value, setInputValue] = useState(router?.query?.query || "")
+  const [value, setInputValue] = useState(query || "")
 
   const handleSearch = () => {
     if (value.length) {

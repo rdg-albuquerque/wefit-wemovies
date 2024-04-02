@@ -7,13 +7,25 @@ import { ProductGrid } from "@/components/product/product-grid/ProductGridElemen
 import { SearchInput } from "@/components/search/SearchInput"
 import useProductSearch from "@/hooks/products-search-hook"
 import breakpoints from "@/styles/breakpoints"
-import { useRouter } from "next/router"
+import { GetServerSideProps } from "next"
 import styled from "styled-components"
 
-export default function Search() {
-  const router = useRouter()
-  const query = router.query.query || ""
+type PageProps = {
+  query: string
+}
 
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  context: any
+) => {
+  const { query } = context
+  return {
+    props: {
+      query: query.query,
+    },
+  }
+}
+
+export default function Search({ query }: PageProps) {
   const { data, error, isLoading } = useProductSearch(query as string)
   return (
     <PageWrapper>
@@ -24,7 +36,7 @@ export default function Search() {
         </NoContentWrapper>
       ) : (
         <SearchPageWrapper>
-          <SearchInput />
+          <SearchInput query={query} />
           {isLoading && <Loading />}
           <ProductGrid>
             {data?.products?.map((product) => (
