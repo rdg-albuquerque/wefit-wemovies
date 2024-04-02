@@ -13,6 +13,7 @@ import { PageWrapper } from "@/components/page-content-wrapper/PageWrapperElemen
 import { TextLg, TextMd } from "@/components/typography/TypographyElements"
 import { useGlobal } from "@/hooks/global-hook"
 import { formatPrice } from "@/utils/format-price"
+import Head from "next/head"
 
 export default function Cart(): JSX.Element {
   const { cartItems } = useGlobal()
@@ -26,6 +27,9 @@ export default function Cart(): JSX.Element {
 
   return (
     <PageWrapper>
+      <Head>
+        <title>Carrinho</title>
+      </Head>
       {isEmptyCart ? (
         <NoResultsWrapper>
           <NoResults isCartPage />
