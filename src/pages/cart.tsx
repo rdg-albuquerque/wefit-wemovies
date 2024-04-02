@@ -7,8 +7,8 @@ import {
   OrderConfirmationWrapper,
   TotalContainer,
 } from "@/components/cart-item/CartItemElements"
-import NoResults from "@/components/no-results/NoResults"
-import { NoResultsWrapper } from "@/components/no-results/NoResultsElements"
+import NoContent from "@/components/no-content/NoContent"
+import { NoContentWrapper } from "@/components/no-content/NoContentElements"
 import { PageWrapper } from "@/components/page-content-wrapper/PageWrapperElements"
 import { TextLg, TextMd } from "@/components/typography/TypographyElements"
 import { useGlobal } from "@/hooks/global-hook"
@@ -31,9 +31,9 @@ export default function Cart(): JSX.Element {
         <title>Carrinho</title>
       </Head>
       {isEmptyCart ? (
-        <NoResultsWrapper>
-          <NoResults isCartPage />
-        </NoResultsWrapper>
+        <NoContentWrapper>
+          <NoContent isCartPage />
+        </NoContentWrapper>
       ) : (
         <CartPageWrapper>
           <ColumnTitleGridContainer>

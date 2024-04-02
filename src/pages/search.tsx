@@ -1,6 +1,6 @@
 import Loading from "@/components/loading/Loading"
-import NoResults from "@/components/no-results/NoResults"
-import { NoResultsWrapper } from "@/components/no-results/NoResultsElements"
+import NoContent from "@/components/no-content/NoContent"
+import { NoContentWrapper } from "@/components/no-content/NoContentElements"
 import { PageWrapper } from "@/components/page-content-wrapper/PageWrapperElements"
 import ProductCard from "@/components/product/product-card/ProductCard"
 import { ProductGrid } from "@/components/product/product-grid/ProductGridElements"
@@ -19,9 +19,9 @@ export default function Search() {
     <PageWrapper>
       <title>Pesquisa</title>
       {error ? (
-        <NoResultsWrapper>
-          <NoResults />
-        </NoResultsWrapper>
+        <NoContentWrapper>
+          <NoContent />
+        </NoContentWrapper>
       ) : (
         <SearchPageWrapper>
           <SearchInput />
