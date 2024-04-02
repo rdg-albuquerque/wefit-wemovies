@@ -12,7 +12,6 @@ export const SearchInput = (): JSX.Element => {
       const params = new URLSearchParams()
       params.append("query", value as string)
 
-      console.log(params.toString())
       router.push(`/search?${params.toString()}`)
     }
   }
