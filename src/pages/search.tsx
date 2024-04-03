@@ -81,6 +81,8 @@ const SearchPageWrapper = styled.div`
     }
   }
   .search-no-results {
+    height: calc(100vh - ${(props) => props.theme.header.height} - 8rem);
+
     margin-top: 1.6rem;
 
     @media (min-width: 656px) {
