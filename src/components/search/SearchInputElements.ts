@@ -5,11 +5,9 @@ export const SearchWrapper = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  max-width: 33.86rem;
 
   @media (min-width: 656px) {
     width: 90%;
-    max-width: unset;
   }
 
   @media (min-width: 750px) {

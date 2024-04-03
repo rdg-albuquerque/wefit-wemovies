@@ -36,13 +36,31 @@ export default function Search({ query }: PageProps) {
         </NoContentWrapper>
       ) : (
         <SearchPageWrapper>
-          <SearchInput query={query} />
-          {isLoading && <Loading />}
-          <ProductGrid>
-            {data?.products?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </ProductGrid>
+          <SearchInput
+            query={query}
+            className={
+              !isLoading && data?.products?.length === 0
+                ? "input-no-results"
+                : ""
+            }
+          />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {!data.products.length ? (
+                <NoContentWrapper className="search-no-results">
+                  <NoContent redirectToHome />
+                </NoContentWrapper>
+              ) : (
+                <ProductGrid>
+                  {data?.products?.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </ProductGrid>
+              )}
+            </>
+          )}
         </SearchPageWrapper>
       )}
     </PageWrapper>
@@ -60,6 +78,23 @@ const SearchPageWrapper = styled.div`
 
     @media ${breakpoints.md} {
       padding-top: 3.43rem;
+    }
+  }
+  .search-no-results {
+    margin-top: 1.6rem;
+
+    @media (min-width: 656px) {
+      width: 90%;
+    }
+
+    @media (min-width: 750px) {
+      width: 80%;
+    }
+
+    @media ${breakpoints.md} {
+      width: 100%;
+      max-width: unset;
+      margin-top: 2.4rem;
     }
   }
 `

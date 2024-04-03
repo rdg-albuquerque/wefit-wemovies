@@ -40,7 +40,7 @@ export default function Cart(): JSX.Element {
       </Head>
       {isEmptyCart ? (
         <NoContentWrapper>
-          <NoContent isCartPage />
+          <NoContent redirectToHome />
         </NoContentWrapper>
       ) : (
         <CartPageWrapper>

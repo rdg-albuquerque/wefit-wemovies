@@ -10,7 +10,6 @@ export const ProductCardWrapper = styled.div`
   gap: 0.8rem;
   border-radius: 0.4rem;
   width: 100%;
-  max-width: 33.86rem;
 
   .card__product-title {
     color: #333333;

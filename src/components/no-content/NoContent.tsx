@@ -3,10 +3,14 @@ import { ImageDesktop, ImageMobile, NoContentInner } from "./NoContentElements"
 import { Button } from "../button/buttonElements"
 import { useRouter } from "next/router"
 
-const NoContent = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
+const NoContent = ({
+  redirectToHome,
+}: {
+  redirectToHome?: boolean
+}): JSX.Element => {
   const router = useRouter()
   const handleButtonClick = () => {
-    if (isCartPage) {
+    if (redirectToHome) {
       router.push("/")
       return
     }
@@ -30,7 +34,7 @@ const NoContent = ({ isCartPage }: { isCartPage?: boolean }): JSX.Element => {
         height={265.36}
       />
       <Button maxWidth={173} onClick={handleButtonClick}>
-        {isCartPage ? "Voltar" : "Recarregar página"}
+        {redirectToHome ? "Voltar" : "Recarregar página"}
       </Button>
     </NoContentInner>
   )

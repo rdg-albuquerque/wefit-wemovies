@@ -3,7 +3,15 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { SearchElement, SearchWrapper } from "./SearchInputElements"
 
-export const SearchInput = ({ query }: { query?: string }): JSX.Element => {
+interface ISearchInputProps {
+  query?: string
+  className?: string
+}
+
+export const SearchInput = ({
+  query,
+  ...props
+}: ISearchInputProps): JSX.Element => {
   const router = useRouter()
   const [value, setInputValue] = useState(query || "")
 
@@ -18,7 +26,7 @@ export const SearchInput = ({ query }: { query?: string }): JSX.Element => {
     }
   }
   return (
-    <SearchWrapper>
+    <SearchWrapper {...props}>
       <SearchElement
         placeholder="Buscar filme pelo nome"
         value={value}
